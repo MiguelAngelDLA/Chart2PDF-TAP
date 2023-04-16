@@ -41,34 +41,26 @@ public class SQLHelper {
         try {
             conectar();
             Statement stmt = (Statement) conectar().createStatement();
-            // Read the CSV file
             BufferedReader br = new BufferedReader(new FileReader(csvFilePath));
             String line;
             String tableName = nombreTabla;
-            int numColumns = -1;
 
-            // Get the column names from the first line of the file
             if ((line = br.readLine()) != null) {
                 String[] columnsArray = line.split(",");
-                numColumns = columnsArray.length;
                 String columns = "(";
                 for (String column : columnsArray) {
                     columns += column + " VARCHAR(255), ";
                 }
                 columns = columns.substring(0, columns.length() - 2) + ")";
 
-                // Create the table
                 String createTableSQL = "CREATE TABLE " + tableName + columns;
                 stmt.executeUpdate(createTableSQL);
             }
 
-            // Insertar Datos en la tabla
-            int lineNum = 2; // Empieza en la segunda linea, después de los titulos
+            int lineNum = 2; 
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-                if (data.length != numColumns) {
-                    throw new Exception("Number of columns in line " + lineNum + " does not match header row");
-                }
+                
                 String values = "";
                 for (String value : data) {
                     values += "'" + value + "', ";
@@ -81,7 +73,7 @@ public class SQLHelper {
                 lineNum++;
             }
 
-            JOptionPane.showMessageDialog(null, "Table created and data inserted successfully!");
+            JOptionPane.showMessageDialog(null, " Tabla creadas y datos insertados");
         } catch (Exception e) {
             e.printStackTrace();
         }

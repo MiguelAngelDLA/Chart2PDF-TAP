@@ -6,16 +6,9 @@
 package Formularios;
 
 import Clases.ChartManager;
-import Clases.GUI.ComboBoxMaterial;
 import Clases.PDFCreator;
 import Clases.SQLHelper;
 import java.awt.Color;
-import javafx.stage.FileChooser;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.ComboBoxUI;
-
 /**
  *
  * @author migue
